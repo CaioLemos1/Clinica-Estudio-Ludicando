@@ -1,0 +1,18 @@
+.logo-area{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo{
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: transform .2s;
+}
+
+.header-logo:hover{
+  transform: scale(1.05);
+}

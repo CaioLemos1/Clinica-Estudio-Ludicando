@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estúdio Ludicando – Terapias Integradas</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --blue: #2E86DE;
+    --blue-dark: #1a5fa8;
+    --yellow: #F9C22E;
+    --yellow-dark: #e0a800;
+    --green: #44BBA4;
+    --pink: #E91E8C;
+    --orange: #FF6B35;
+    --purple: #9B59B6;
+    --text: #2d2d2d;
+    --text-light: #666;
+    --white: #ffffff;
+    --bg-light: #f4f8ff;
+    --radius: 20px;
+    --shadow: 0 8px 32px rgba(46,134,222,0.13);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  header {
+    background: var(--white);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 5%;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .logo-text span.est { color: var(--yellow-dark); }
+  .logo-text span.lud { color: var(--blue); }
+  .logo-sub { font-size: 0.62rem; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase; margin-top: 2px; }
+
+  nav a {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    transition: background .2s, transform .2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+
+  /* ── HERO ────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #e8f4ff 0%, #fff9e6 50%, #eafaf7 100%);
+    padding: 70px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: var(--yellow);
+    border-radius: 50%;
+    opacity: .18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 260px; height: 260px;
+    background: var(--blue);
+    border-radius: 50%;
+    opacity: .12;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-text { flex: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--text);
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .hero h1 em { color: var(--blue); font-style: normal; }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 30px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 18px rgba(46,134,222,.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(46,134,222,.45); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--blue);
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2.5px solid var(--blue);
+    transition: background .2s, color .2s;
+  }
+  .btn-secondary:hover { background: var(--blue); color: var(--white); }
+
+  .hero-visual {
+    flex: 0 0 380px;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 36px 32px;
+    box-shadow: 0 12px 50px rgba(46,134,222,.18);
+    text-align: center;
+    position: relative;
+  }
+  .kids-illus {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .kid {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .kid:nth-child(2) { animation-delay: .3s; }
+  .kid:nth-child(3) { animation-delay: .6s; }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .kid-1 { background: #fde8f5; }
+  .kid-2 { background: #e8f4ff; }
+  .kid-3 { background: #e8faf6; }
+  .hero-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .hero-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .stat {
+    flex: 1;
+    background: var(--bg-light);
+    border-radius: 14px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .stat strong {
+    display: block;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--blue);
+  }
+  .stat span { font-size: 0.72rem; color: var(--text-light); }
+
+  /* ── ABOUT ───────────────────────────────────── */
+  .section { padding: 70px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .section-title em { color: var(--blue); font-style: normal; }
+
+  /* ── ESPECIALIDADES ──────────────────────────── */
+  .esp-section { background: var(--bg-light); }
+  .esp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 38px;
+  }
+  .esp-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform .25s, box-shadow .25s;
+    cursor: default;
+    border-top: 4px solid transparent;
+  }
+  .esp-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(46,134,222,.18); }
+  .esp-card:nth-child(1) { border-top-color: var(--blue); }
+  .esp-card:nth-child(2) { border-top-color: var(--yellow-dark); }
+  .esp-card:nth-child(3) { border-top-color: var(--pink); }
+  .esp-card:nth-child(4) { border-top-color: var(--green); }
+  .esp-card:nth-child(5) { border-top-color: var(--orange); }
+  .esp-card:nth-child(6) { border-top-color: var(--purple); }
+  .esp-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .esp-card h3 { font-weight: 800; font-size: 0.98rem; margin-bottom: 8px; }
+  .esp-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; }
+
+  /* ── CONVENIOS ───────────────────────────────── */
+  .conv-section { background: var(--white); }
+  .conv-subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 36px;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+  .conv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+  }
+  .conv-card {
+    background: var(--white);
+    border: 2px solid #e8eef8;
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color .22s, box-shadow .22s, transform .22s;
+    cursor: default;
+  }
+  .conv-card:hover {
+    border-color: var(--blue);
+    box-shadow: 0 6px 24px rgba(46,134,222,.14);
+    transform: translateY(-3px);
+  }
+  .conv-logo {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--bg-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .conv-info strong { display: block; font-size: 0.88rem; font-weight: 800; color: var(--text); }
+  .conv-info span { font-size: 0.74rem; color: var(--text-light); }
+
+  /* color accents per conv */
+  .conv-funsa .conv-logo { background: #e8eeff; }
+  .conv-fusex .conv-logo { background: #e8ffe8; }
+  .conv-geap .conv-logo { background: #ffe8e8; }
+  .conv-caixa .conv-logo { background: #fff3e0; }
+  .conv-innova .conv-logo { background: #e8f6ff; }
+  .conv-salv .conv-logo { background: #e8fff5; }
+  .conv-life .conv-logo { background: #ffeef8; }
+  .conv-prosocial .conv-logo { background: #eef8ff; }
+  .conv-plan .conv-logo { background: #e8fff0; }
+  .conv-sul .conv-logo { background: #fff0f0; }
+  .conv-unimed .conv-logo { background: #e8ffec; }
+
+  /* ── HOW IT WORKS ────────────────────────────── */
+  .how-section { background: linear-gradient(135deg, #1a5fa8 0%, #2E86DE 100%); }
+  .how-section .section-label { color: var(--yellow); }
+  .how-section .section-title { color: var(--white); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .step {
+    background: rgba(255,255,255,.12);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    transition: background .2s;
+  }
+  .step:hover { background: rgba(255,255,255,.2); }
+  .step-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .step h3 { font-weight: 800; font-size: 0.98rem; color: var(--white); margin-bottom: 8px; }
+  .step p { font-size: 0.83rem; color: rgba(255,255,255,.8); line-height: 1.6; }
+
+  /* ── EQUIPE ──────────────────────────────────── */
+  .team-section { background: var(--bg-light); }
+  .team-intro {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+  .team-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .value-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-shadow: var(--shadow);
+  }
+  .value-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .value-card h4 { font-weight: 800; font-size: 0.92rem; margin-bottom: 5px; color: var(--blue); }
+  .value-card p { font-size: 0.8rem; color: var(--text-light); line-height: 1.55; }
+
+  /* ── CTA / WHATSAPP ──────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, #fff9e6 0%, #e8f4ff 100%);
+    padding: 80px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '💛';
+    position: absolute; top: 20px; left: 8%;
+    font-size: 3rem; opacity: .18;
+    animation: float 4s ease-in-out infinite;
+  }
+  .cta-section::after {
+    content: '💙';
+    position: absolute; bottom: 20px; right: 8%;
+    font-size: 3rem; opacity: .18;
+    animation: float 4s ease-in-out infinite .8s;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-14px) rotate(5deg); }
+  }
+  .cta-section h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .cta-section h2 em { color: var(--blue); font-style: normal; }
+  .cta-section p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 18px 38px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 28px rgba(37,211,102,.4);
+    transition: transform .25s, box-shadow .25s;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-whatsapp:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(37,211,102,.5);
+  }
+  .btn-whatsapp svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .contact-details {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+  }
+  .contact-item span:first-child { font-size: 1.1rem; }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,.7);
+    text-align: center;
+    padding: 28px 5%;
+    font-size: 0.82rem;
+  }
+  footer strong { color: var(--white); }
+  footer .foot-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  footer .foot-logo span.e { color: var(--yellow); }
+  footer .foot-logo span.l { color: #5fb8ff; }
+
+  /* ── WHATSAPP FLOAT ──────────────────────────── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 60px; height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,.5);
+    z-index: 200;
+    text-decoration: none;
+    animation: pulse-wa 2.5s ease-in-out infinite;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.12); animation: none; }
+  @keyframes pulse-wa {
+    0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+    50% { box-shadow: 0 6px 40px rgba(37,211,102,.75); }
+  }
+  .wa-float svg { width: 32px; height: 32px; }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-inner { flex-direction: column; gap: 36px; }
+    .hero-visual { flex: none; width: 100%; }
+    .hero-card { max-width: 340px; margin: 0 auto; }
+    nav { display: none; }
+    .conv-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .conv-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5569992630805?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20do%20Estúdio%20Ludicando." class="wa-float" target="_blank" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+        <img src="logo.png.JPG" alt="Logo Estúdio Ludicando" class="header-logo">
+  <div>
+    <div class="logo-text">
+      <span class="est">Estúdio </span>
+      <span class="lud">Ludicando</span>
+    </div>
+    <div class="logo-sub">
+      Terapias Integradas
+    </div>
+  </div>
+</div>
+    <nav>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#convenios">Convênios</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#contato" class="nav-cta">Agendar Consulta</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">✨ Cuidado com amor e ciência</div>
+      <h1>Terapia especializada<br>para <em>cada criança</em><br>ser ela mesma</h1>
+      <p>Atendemos crianças e adolescentes com autismo (TEA), TDAH, ansiedade, depressão e muito mais — com uma equipe multidisciplinar dedicada ao desenvolvimento saudável e feliz.</p>
+      <div class="hero-btns">
+        <a href="#contato" class="btn-primary">Agendar Consulta</a>
+        <a href="#especialidades" class="btn-secondary">Nossos Serviços</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="kids-illus">
+          <div class="kid kid-1">👧</div>
+          <div class="kid kid-2">👦</div>
+          <div class="kid kid-3">🧒</div>
+        </div>
+        <h3>Terapias Integradas</h3>
+        <p>Cada criança é única. Nosso atendimento é personalizado e acolhedor, respeitando o ritmo de cada um.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <strong>11+</strong>
+            <span>Convênios</span>
+          </div>
+          <div class="stat">
+            <strong>TEA</strong>
+            <span>Especialistas</span>
+          </div>
+          <div class="stat">
+            <strong>💙</strong>
+            <span>Cuidado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="section esp-section" id="especialidades">
+  <div class="section-inner">
+    <div class="section-label">O que fazemos</div>
+    <div class="section-title">Nossas <em>Especialidades</em></div>
+    <div class="esp-grid">
+
+      <div class="esp-card">
+        <div class="esp-icon">🧩</div>
+        <h3>Análise do Comportamento – ABA</h3>
+        <p>Intervenção baseada em evidências científicas que desenvolve habilidades sociais, de comunicação e autonomia, reduzindo comportamentos que dificultam o aprendizado de forma positiva e respeitosa.</p>
+      </div>
+
+      <div class="esp-card">
+        <div class="esp-icon">🧠</div>
+        <h3>Avaliação Neuropsicológica</h3>
+        <p>Mapeamento detalhado das funções cognitivas — memória, atenção, linguagem e raciocínio — para identificar pontos fortes e dificuldades, orientando o plano terapêutico de cada criança com precisão e cuidado.</p>
+      </div>
+
+      <div class="esp-card">
+        <div class="esp-icon">🤸</div>
+        <h3>Psicomotricidade</h3>
+        <p>Trabalha a relação entre corpo, movimento e emoção, estimulando coordenação motora, equilíbrio, esquema corporal e autoconfiança por meio de atividades lúdicas e prazerosas.</p>
+      </div>
+
+      <div class="esp-card">
+        <div class="esp-icon">💪</div>
+        <h3>Fisioterapia Intensiva – Therasuit</h3>
+        <p>Método intensivo de reabilitação que utiliza um traje especial para normalizar padrões de movimento, fortalecer a musculatura e melhorar significativamente a funcionalidade motora e a qualidade de vida.</p>
+      </div>
+
+      <div class="esp-card">
+        <div class="esp-icon">🌈</div>
+        <h3>Terapia Multidisciplinar</h3>
+        <p>Uma equipe integrada de especialistas — psicólogos, fonoaudiólogos, terapeutas ocupacionais e mais — trabalhando juntos em um plano unificado, para que cada criança se desenvolva de forma completa e harmoniosa.</p>
+      </div>
+
+      <div class="esp-card">
+        <div class="esp-icon">🎵</div>
+        <h3>Musicoterapia</h3>
+        <p>Utiliza a música como ferramenta terapêutica para estimular a comunicação, a expressão emocional, o desenvolvimento cognitivo e o vínculo afetivo, transformando cada sessão em uma experiência encantadora.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONVÊNIOS -->
+<section class="section conv-section" id="convenios">
+  <div class="section-inner">
+    <div class="section-label">Aceitamos seu plano</div>
+    <div class="section-title">Convênios <em>Atendidos</em></div>
+    <p class="conv-subtitle">💙 Cuidado e acolhimento para cada fase da vida. Trabalhamos com os principais planos de saúde para facilitar o acesso ao atendimento que sua família precisa.</p>
+    <div class="conv-grid">
+
+      <div class="conv-card conv-funsa">
+        <div class="conv-logo">🛡️</div>
+        <div class="conv-info">
+          <strong>Funsa</strong>
+          <span>Fundo de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-fusex">
+        <div class="conv-logo">⭐</div>
+        <div class="conv-info">
+          <strong>Fusex</strong>
+          <span>Fundo de Saúde do Exército</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-geap">
+        <div class="conv-logo">❤️</div>
+        <div class="conv-info">
+          <strong>Geap Saúde</strong>
+          <span>Plano de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-caixa">
+        <div class="conv-logo">🏦</div>
+        <div class="conv-info">
+          <strong>Saúde Caixa</strong>
+          <span>Caixa Econômica Federal</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-innova">
+        <div class="conv-logo">💠</div>
+        <div class="conv-info">
+          <strong>Innova</strong>
+          <span>Plano de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-salv">
+        <div class="conv-logo">🌱</div>
+        <div class="conv-info">
+          <strong>Salv Saúde</strong>
+          <span>Plano de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-life">
+        <div class="conv-logo">🌸</div>
+        <div class="conv-info">
+          <strong>Life Empresarial</strong>
+          <span>Saúde Empresarial</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-prosocial">
+        <div class="conv-logo">🤝</div>
+        <div class="conv-info">
+          <strong>Pro Social</strong>
+          <span>Plano de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-plan">
+        <div class="conv-logo">➕</div>
+        <div class="conv-info">
+          <strong>Plan-Assiste</strong>
+          <span>Ministério Público da União</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-sul">
+        <div class="conv-logo">🔴</div>
+        <div class="conv-info">
+          <strong>SulAmérica</strong>
+          <span>Seguros de Saúde</span>
+        </div>
+      </div>
+
+      <div class="conv-card conv-unimed">
+        <div class="conv-logo">🟢</div>
+        <div class="conv-info">
+          <strong>Unimed</strong>
+          <span>Seguros Unimed</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section how-section" id="como-funciona">
+  <div class="section-inner">
+    <div class="section-label">Simples e acolhedor</div>
+    <div class="section-title">Como <em style="color:var(--yellow)">Funciona</em></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Entre em contato</h3>
+        <p>Fale conosco pelo WhatsApp ou telefone. Nossa equipe vai te atender com carinho e tirar todas as dúvidas.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Avaliação inicial</h3>
+        <p>Realizamos uma avaliação completa e acolhedora para entender as necessidades específicas da criança e da família.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Plano terapêutico</h3>
+        <p>Montamos um plano de tratamento personalizado com os profissionais mais indicados para cada caso.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Acompanhamento contínuo</h3>
+        <p>Monitoramos o progresso regularmente, ajustando o tratamento para sempre obter os melhores resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSSOS VALORES -->
+<section class="section team-section">
+  <div class="section-inner">
+    <div class="section-label">Por que nos escolher</div>
+    <div class="section-title">Cuidado <em>Integral</em> e Acolhedor</div>
+    <p class="team-intro">No Estúdio Ludicando, acreditamos que cada criança merece um ambiente seguro, estimulante e cheio de amor para se desenvolver plenamente. Nossa equipe multidisciplinar une ciência e afeto para transformar vidas.</p>
+    <div class="team-values">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div>
+          <h4>Atendimento Especializado</h4>
+          <p>Profissionais capacitados nas principais áreas da saúde mental e do neurodesenvolvimento infantil.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏠</div>
+        <div>
+          <h4>Ambiente Acolhedor</h4>
+          <p>Espaço pensado para deixar crianças e famílias à vontade, com estrutura lúdica e acessível.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">👨‍👩‍👧</div>
+        <div>
+          <h4>Suporte à Família</h4>
+          <p>Orientamos e incluímos os pais e responsáveis no processo terapêutico para resultados mais duradouros.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌈</div>
+        <div>
+          <h4>Abordagem Lúdica</h4>
+          <p>Usamos o brincar como ferramenta terapêutica, tornando o tratamento natural e prazeroso para a criança.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTATO -->
+<section class="cta-section" id="contato">
+  <h2>Pronto para dar o<br><em>primeiro passo</em>?</h2>
+  <p>Entre em contato pelo WhatsApp e nossa equipe vai te atender com todo o carinho que a sua família merece. 💙</p>
+  <a href="https://wa.me/5569992630805?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20no%20Estúdio%20Ludicando." class="btn-whatsapp" target="_blank">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Falar no WhatsApp agora
+  </a>
+  <div class="contact-details">
+    <div class="contact-item">
+      <span>📍</span>
+      <span>Av. Pinheiro Machado, 2004 - São Cristóvão, Porto Velho – RO</span>
+    </div>
+    <div class="contact-item">
+      <span>🕐</span>
+      <span>Seg–Sex: 8h às 12h - 14h às 18h</span>
+    </div>
+    <div class="contact-item">
+      <span>💙</span>
+      <span>Atendemos todos os convênios listados</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo"><span class="e">Estúdio </span><span class="l">Ludicando</span></div>
+  <p>Terapias Integradas &nbsp;·&nbsp; Av. Pinheiro Machado, 2004 - São Cristóvão, Porto Velho – RO</p>
+  <p style="margin-top:8px">© 2026 Estúdio Ludicando. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
